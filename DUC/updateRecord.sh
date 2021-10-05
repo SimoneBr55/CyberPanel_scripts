@@ -1,4 +1,7 @@
 #/bin/bash
+## USAGE ## Add nice printout
+# You have to set a .set_env_vars (or...) to source here #
+# SimoneBr55 #
 
 source .set_env_vars
 # source /etc/updateRecordVars # Is it better? Nicer management?
