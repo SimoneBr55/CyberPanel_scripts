@@ -19,5 +19,5 @@ if [[ $? -eq 0 ]]
         ssh -p $SSH_PORT -t -i $LOCATION_RSA admin@$IP_ADDRESS "sudo cyberpanel deleteDNSRecord --recordID $recordid"
         ssh -p $SSH_PORT -t -i $LOCATION_RSA admin@$IP_ADDRESS "sudo cyberpanel createDNSRecord --domainName $DOMAIN --name $SUBDOMAIN --recordType A --value $NEW_IP --priority 0 --ttl 60"
 fi
-
+rm /tmp/DNSRecords.lis
 ## Suggestions: you can add the possibility to pipe the sudo password directly, to make it really automatic... However, the uttermost care must be used when dealing with passwords in scripts... ##
