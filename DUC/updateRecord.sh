@@ -8,7 +8,7 @@ source /etc/DUC/.set_env_vars
 
 ssh -p $SSH_PORT -t -i $LOCATION_RSA admin@$IP_ADDRESS "sudo cyberpanel listDNSPretty --domainName $DOMAIN" |& tee /tmp/DNSRecords.lis
 OLD_IP=$(cat /tmp/DNSRecords.lis | grep \ $SUBDOMAIN | grep \ A\ | awk '{print $8}')
-NEW_IP=$(curl ifconfig.co)
+NEW_IP=$(curl -s https://api.ipify.org 2>/dev/null)
 [[ $NEW_IP == $OLD_IP ]]
 if [[ $? -eq 0 ]]
     then

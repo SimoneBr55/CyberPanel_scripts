@@ -2,18 +2,27 @@
 if [[ $1 == "-h" ]]
 then
 	echo "===================USAGE================="
-	echo "Arguments:"
+	echo "Debug mode (verbose):"
 	echo "checkRecord --debug"
+	echo ""
+	echo "If you want to use arguments:"
+	echo "checkRecord -a <domain> [--debug]"
+	exit 0
 fi
 
-source /etc/DUC/.set_env_vars
+if [[ $1 == "-a" ]]
+then
+	SUBDOMAIN=$2
+else
+	source /etc/DUC/.set_env_vars
+fi
 
 IP_RECORD=$(dig +short $SUBDOMAIN @1.1.1.1)
-IP_CURRENT=$(curl ifconfig.co 2>/dev/null)
+IP_CURRENT=$(curl -s https://api.ipify.org 2>/dev/null)
 
 if [[ $IP_RECORD == $IP_CURRENT ]] 
 then
-	if [[ $1 == "--debug" ]]
+	if [[ $1 == "--debug" ]] || [[ $3 == "--debug" ]]
 	then
 		echo "DEBUG:"
 		echo "IP is still the same"
