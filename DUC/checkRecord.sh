@@ -17,7 +17,7 @@ else
 	source /etc/DUC/.set_env_vars
 fi
 
-IP_RECORD=$(dig +short $SUBDOMAIN @1.1.1.1)
+IP_RECORD=$(dig +short $SUBDOMAIN @8.8.8.8)
 IP_CURRENT=$(curl -s https://api.ipify.org 2>/dev/null)
 
 if [[ $IP_RECORD == $IP_CURRENT ]] 
